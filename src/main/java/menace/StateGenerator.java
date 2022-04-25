@@ -1,11 +1,7 @@
 package menace;
 
-import menace.SymmetryUtil;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.stream.Collectors;
 
 public class StateGenerator {
     public static HashMap<Integer, HashSet<String>> getStates() {

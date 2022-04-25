@@ -34,28 +34,28 @@ public class SymmetryUtil {
         return states;
     }
 
-    public static Integer[] getMappingIfEqual(String original, String combination) {
-        if (original.equals(combination)) {
+    public static Integer[] getMappingIfEqual(String original, String state) {
+        if (state.equals(original)) {
             return selfMapping;
-        } else if (original.equals(rotate90(combination))) {
+        } else if (state.equals(rotate90(original))) {
             return rotate90Mapping;
         }
-        else if(original.equals(rotate180(combination))) {
+        else if(state.equals(rotate180(original))) {
             return rotate180Mapping;
         }
-        else if(original.equals(rotate270(combination))) {
+        else if(state.equals(rotate270(original))) {
             return rotate270Mapping;
         }
-        else if(original.equals(flipHorizontal(combination))) {
+        else if(state.equals(flipHorizontal(original))) {
             return flipHorizontalMapping;
         }
-        else if(original.equals(flipVertical(combination))) {
+        else if(state.equals(flipVertical(original))) {
             return flipVerticalMapping;
         }
-        else if(original.equals(diagonalFlip(combination))) {
+        else if(state.equals(diagonalFlip(original))) {
             return diagonalFlipMapping;
         }
-        else if(original.equals(antiDiagonalFlip(combination))) {
+        else if(state.equals(antiDiagonalFlip(original))) {
             return antiDiagonalFlipMapping;
         }
         else {

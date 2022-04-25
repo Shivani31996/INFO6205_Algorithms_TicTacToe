@@ -1,5 +1,8 @@
 package menace;
 
+import logger.LogManager;
+
+import java.io.IOException;
 import java.util.*;
 
 public class Menace {
@@ -38,21 +41,23 @@ public class Menace {
         }
     }
 
-    private void finish() {
+    public void finish() {
         this.currentMatchBoxes.clear();
     }
 
-    public Bead getBead(String state) {
+    public Bead getBead(String state, Mode mode ) {
         for (MatchBox matchBox : matchBoxes) {
             Integer[] mapping = matchBox.getMappingIfEqual(state);
             if (mapping != null) {
                 this.currentMatchBoxes.add(matchBox);
-                Bead bead = matchBox.getBead();
-                for (int i = 0; i < mapping.length; i++) {
-                    if (mapping[i] == bead.getPosition()) {
-                        return new Bead(i);
-                    }
-                }
+                Bead bead = matchBox.getBead(state, mapping, mode);
+                return bead;
+//                for (int i = 0; i < mapping.length; i++) {
+//                    if (mapping[i] == bead.getPosition()) {
+//                        return new Bead(i);
+//                    }
+//                }
+                //return new Bead(mapping[bead.getPosition()]);
             }
         }
 
@@ -69,5 +74,12 @@ public class Menace {
 //        }
 
         return null;
+    }
+
+    public void printTrained() throws IOException {
+        for (MatchBox matchBox: matchBoxes) {
+            System.out.println(matchBox);
+            LogManager.logResult(matchBox.toString());
+        }
     }
 }
