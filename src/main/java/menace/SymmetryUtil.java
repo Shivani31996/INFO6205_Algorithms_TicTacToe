@@ -111,7 +111,6 @@ public class SymmetryUtil {
 
     private static String transform(String board, Integer[] map) {
         char[] response = new char[9];
-        System.out.println("Integer map is "+map);
         for (int i = 0; i < board.length(); i++) {
             response[map[i]] = board.charAt(i);
         }
