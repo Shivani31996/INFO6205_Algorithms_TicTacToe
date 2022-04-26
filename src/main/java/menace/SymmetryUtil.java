@@ -105,6 +105,7 @@ public class SymmetryUtil {
         for (int i = 0; i < board.length(); i++) {
             response[map[i]] = board.charAt(i);
         }
+
         return String.valueOf(response);
     }
 }
