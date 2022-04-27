@@ -1,8 +1,5 @@
 package menace;
 
-import logger.LogManager;
-
-import java.io.IOException;
 import java.util.*;
 
 public class Menace {
