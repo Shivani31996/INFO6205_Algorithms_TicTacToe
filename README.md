@@ -9,4 +9,4 @@ Steps to run the project:
 4) Open the ConsoleController.java file located in src/main/java/player directory
 5) This will open up the console where the MENACE starts it training with the GrandMaster.
 6) Once the MENACE is trained you can start playing the game with the MENACE which is trained.
-7) You can view the logging details in the training.out file located in the src/main/java/output directory
+7) You can view the logging details in the output.txt file located in the src/main/java/output directory

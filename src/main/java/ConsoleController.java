@@ -1,6 +1,5 @@
 import logger.LogManager;
 import menace.*;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -9,7 +8,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ConsoleController {
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws IOException {
+        LogManager logManager = LogManager.getInstance();
         Scanner sc = new Scanner(System.in);
         HashMap<Integer, HashSet<String>> states = StateGenerator.getStates();
         Menace menace = new Menace(states);
@@ -38,7 +39,7 @@ public class ConsoleController {
         trainingBuilder.append("Initial Values for ALPHA is: " + Constants.ALPHA + ", BETA is : " + Constants.BETA
                 + ", GAMMA is: " + Constants.GAMMA + " and DELTA is: " + Constants.DELTA +"\n");
 
-        while (iterations < 1000) {
+        while (iterations < 2000) {
             int level = 0;
             String initial = states.get(level).stream().findFirst().orElse(null);
 
@@ -47,7 +48,7 @@ public class ConsoleController {
             GameStatus gameStatus = GameStatusHelper.getStatus(String.valueOf(board));
             while (gameStatus.equals(GameStatus.RUNNING)) {
                 if (move == 'X') {
-                    Bead bead = menace.getBead(String.valueOf(board), Mode.TEST);
+                    Bead bead = menace.getBead(String.valueOf(board));
                     board[bead.getPosition()] = move;
                 } else {
                     int grandMasterMove = grandMaster.nextMove(String.valueOf(board), level);
@@ -88,7 +89,7 @@ public class ConsoleController {
         trainingBuilder.append("During training Menace played total: " +totalNoOfMatches + " games of which he won: " + totalNoOfWins + ", lost: "
         + totalNoOfLoss + " and draw: " +totalNoOfDraws +  " and Probability p for the wins and draws for the opponent  is: " +probability +"\n");
         try {
-            LogManager.logTraining(trainingBuilder.toString());
+            logManager.log(trainingBuilder.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -109,7 +110,7 @@ public class ConsoleController {
             while (gameStatus.equals(GameStatus.RUNNING)) {
                 print(board);
                 if (move == 'X') {
-                    Bead bead = menace.getBead(String.valueOf(board), Mode.TEST);
+                    Bead bead = menace.getBead(String.valueOf(board));
                     int pos = bead.getPosition();
                     board[bead.getPosition()] = move;
 //                    int pos = grandMaster.nextMove(String.valueOf(board), level);
@@ -166,7 +167,7 @@ public class ConsoleController {
                     + totalLoss + " and draw: " +totalDraws + "\n");
 
             try {
-                LogManager.logMatches(matchesBuilder.toString());
+                logManager.log(matchesBuilder.toString());
             } catch (IOException e) {
                 e.printStackTrace();
             }

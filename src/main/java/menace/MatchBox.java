@@ -32,7 +32,7 @@ public class MatchBox {
         return mapping;
     }
 
-    public Bead getBead(String state, Integer[] mapping, Mode mode){
+    public Bead getBead(String state, Integer[] mapping){
         if (this.beads.size() == 0) {
             this.fillBox();
         }

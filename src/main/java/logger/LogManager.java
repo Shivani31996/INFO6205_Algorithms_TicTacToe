@@ -6,17 +6,23 @@ import java.io.IOException;
 
 public class LogManager {
 
+    private static LogManager logManager;
+    private LogManager() throws IOException {
+        FileConfigurator.configure();
+    }
+
+    public static LogManager getInstance() throws IOException {
+        if (logManager == null) {
+            logManager = new LogManager();
+        }
+        return logManager;
+    }
+
     /* Get actual class name to be printed on */
     private static Logger log = Logger.getLogger(LogManager.class.getName());
-    private static Logger log1 = Logger.getLogger(LogManager.class.getName());
 
-    public static void logTraining(String result) throws IOException {
-        FileConfigurator.configureTraining();
+    public void log(String result) throws IOException {
         log.info(result);
     }
 
-    public static void logMatches(String result) throws IOException {
-        FileConfigurator.configureMatches();
-        log1.info(result);
-    }
 }

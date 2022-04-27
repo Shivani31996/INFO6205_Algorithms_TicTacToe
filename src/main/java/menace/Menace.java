@@ -45,12 +45,12 @@ public class Menace {
         this.currentMatchBoxes.clear();
     }
 
-    public Bead getBead(String state, Mode mode ) {
+    public Bead getBead(String state ) {
         for (MatchBox matchBox : matchBoxes) {
             Integer[] mapping = matchBox.getMappingIfEqual(state);
             if (mapping != null) {
                 this.currentMatchBoxes.add(matchBox);
-                Bead bead = matchBox.getBead(state, mapping, mode);
+                Bead bead = matchBox.getBead(state, mapping);
                 return bead;
             }
         }
