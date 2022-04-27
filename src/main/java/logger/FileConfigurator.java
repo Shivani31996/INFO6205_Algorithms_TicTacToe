@@ -6,15 +6,29 @@ import java.io.IOException;
 
 public class FileConfigurator {
 
-    private static final String FILE_NAME = "src/main/java/output/log.out";
+    private static final String Training = "src/main/java/output/training.out";
+    private static final String Matches = "src/main/java/output/matches.out";
 
-    public static void configure() throws IOException {
+    public static void configureTraining() throws IOException {
         Logger logRoot = Logger.getRootLogger();
 
         PatternLayout layout = new PatternLayout("%m%n");
         FileAppender appender = new FileAppender(
                 layout,
-                FILE_NAME,
+                Training,
+                true,
+                false,
+                8192);
+        logRoot.addAppender(appender);
+    }
+
+    public static void configureMatches() throws IOException {
+        Logger logRoot = Logger.getRootLogger();
+
+        PatternLayout layout = new PatternLayout("%m%n");
+        FileAppender appender = new FileAppender(
+                layout,
+                Matches,
                 true,
                 false,
                 8192);
