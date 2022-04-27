@@ -26,17 +26,19 @@ public class ConsoleController {
         int totalDraws = 0;
 
         GrandMaster grandMaster = new GrandMaster(states);
-        StringBuilder sb = new StringBuilder();
+        StringBuilder trainingBuilder = new StringBuilder();
+        System.out.println("\nThe machine is getting trained with the Grandmaster with 10000 games.\n" +
+                "Once the training is completed a game will be started for playing against the MENACE");
         System.out.println("\nInitial Values for ALPHA is: " + Constants.ALPHA + ", BETA is : " + Constants.BETA
         + ", GAMMA is: " + Constants.GAMMA + " and DELTA is: " + Constants.DELTA);
         System.out.println("\n*****************************************************************************");
         System.out.println("Menace is trained with the help of GrandMaster which trains it in such\n" +
                 "a way that it does not win helping the Menace remove the beads from \n" +
                 "the matchboxes that might lead him to lose while playing against a Human\n");
-        sb.append("Initial Values for ALPHA is: " + Constants.ALPHA + ", BETA is : " + Constants.BETA
+        trainingBuilder.append("Initial Values for ALPHA is: " + Constants.ALPHA + ", BETA is : " + Constants.BETA
                 + ", GAMMA is: " + Constants.GAMMA + " and DELTA is: " + Constants.DELTA +"\n");
 
-        while (iterations < 10000) {
+        while (iterations < 1000) {
             int level = 0;
             String initial = states.get(level).stream().findFirst().orElse(null);
 
@@ -65,28 +67,28 @@ public class ConsoleController {
                 menace.reward();
                 totalNoOfWins++;
                 totalNoOfMatches++;
-                sb.append(formatter.format(date) + " Menace won \n");
+                trainingBuilder.append(formatter.format(date) + " Menace won \n");
             } else if (gameStatus.equals(GameStatus.DRAW)) {
                 menace.draw();
                 totalNoOfDraws++;
                 totalNoOfMatches++;
-                sb.append(formatter.format(date) + " Menace Draw \n");
+                trainingBuilder.append(formatter.format(date) + " Menace Draw \n");
             } else {
                 menace.punish();
                 totalNoOfLoss++;
                 totalNoOfMatches++;
-                sb.append(formatter.format(date) + " Menace Lose \n");
+                trainingBuilder.append(formatter.format(date) + " Menace Lose \n");
             }
             probability =  (totalNoOfLoss + totalNoOfDraws) / totalNoOfMatches;
             menace.finish();
             iterations++;
         }
-        System.out.println("Menace played total: " +totalNoOfMatches + " games of which he won: " + totalNoOfWins + ", lost: "
-                + totalNoOfLoss + " and draw: " +totalNoOfDraws + " and Probability p is: " +probability +"\n");
-        sb.append("Menace played total: " +totalNoOfMatches + " games of which he won: " + totalNoOfWins + ", lost: "
-        + totalNoOfLoss + " and draw: " +totalNoOfDraws +  " and Probability p is: " +probability +"\n");
+        System.out.println("During training Menace played total: " +totalNoOfMatches + " games of which he won: " + totalNoOfWins + ", lost: "
+                + totalNoOfLoss + " and draw: " +totalNoOfDraws + " and Probability p for the wins and draws for the opponent is: " +probability +"\n");
+        trainingBuilder.append("During training Menace played total: " +totalNoOfMatches + " games of which he won: " + totalNoOfWins + ", lost: "
+        + totalNoOfLoss + " and draw: " +totalNoOfDraws +  " and Probability p for the wins and draws for the opponent  is: " +probability +"\n");
         try {
-            LogManager.log(sb.toString());
+            LogManager.logTraining(trainingBuilder.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -94,9 +96,9 @@ public class ConsoleController {
 
         while (true) {
 
-            StringBuilder sb1 = new StringBuilder();
+            StringBuilder matchesBuilder = new StringBuilder();
             System.out.println("New Game: Please enter values between 0 and 8\n");
-            sb1.append("New Game:\n");
+            matchesBuilder.append("New Game:\n");
 
             String initial = states.get(0).stream().findFirst().orElse(null);
 
@@ -113,7 +115,7 @@ public class ConsoleController {
 //                    int pos = grandMaster.nextMove(String.valueOf(board), level);
 //                    board[pos] = move;
                     System.out.println("Menace played the move at position " + pos);
-                    sb1.append("Menace played the move at position " + pos  + "\n");
+                    matchesBuilder.append("Menace played the move at position " + pos  + "\n");
                 }
                 else {
                     int pos = -1;
@@ -129,7 +131,7 @@ public class ConsoleController {
 
                     board[pos] = move;
                     System.out.println("Human played the move at position " + pos);
-                    sb1.append("Human played the move at position ").append(pos).append("\n");
+                    matchesBuilder.append("Human played the move at position ").append(pos).append("\n");
                 }
 
                 move = move == 'X' ? 'O' : 'X';
@@ -143,28 +145,28 @@ public class ConsoleController {
                 menace.reward();
                 totalWins++;
                 System.out.println("Menace is the winner");
-                sb1.append("Menace is the winner\n");
+                matchesBuilder.append("Menace is the winner\n");
             }
             else if(gameStatus == GameStatus.O_WINNER) {
                 menace.punish();
                 totalLoss++;
                 System.out.println("Human is the winner");
-                sb1.append("Human is the winner\n");
+                matchesBuilder.append("Human is the winner\n");
             }
             else {
                 menace.draw();
                 totalDraws++;
                 System.out.println("Match is Draw");
-                sb1.append("Match is Draw\n");
+                matchesBuilder.append("Match is Draw\n");
             }
 
             System.out.println("Menace played total: " + totalMatchesPlayed + " games of which he won: " + totalWins + ", lost: "
                     + totalLoss + " and draw: " + totalDraws + "\n");
-            sb1.append("\nMenace played total: " +totalMatchesPlayed + " games of which he won: " + totalWins + ", lost: "
+            matchesBuilder.append("\nMenace played total: " +totalMatchesPlayed + " games of which he won: " + totalWins + ", lost: "
                     + totalLoss + " and draw: " +totalDraws + "\n");
 
             try {
-                LogManager.log(sb1.toString());
+                LogManager.logMatches(matchesBuilder.toString());
             } catch (IOException e) {
                 e.printStackTrace();
             }
