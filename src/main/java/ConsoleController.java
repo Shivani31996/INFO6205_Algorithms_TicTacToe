@@ -25,10 +25,11 @@ public class ConsoleController {
         int totalWins = 0;
         int totalLoss = 0;
         int totalDraws = 0;
+        int numGames = 2000;
 
         GrandMaster grandMaster = new GrandMaster(states);
         StringBuilder trainingBuilder = new StringBuilder();
-        System.out.println("\nThe machine is getting trained with the Grandmaster with 2000 games.\n" +
+        System.out.println("\nThe machine is getting trained with the Grandmaster with "+numGames+" games.\n" +
                 "Once the training is completed a game will be started for playing against the MENACE");
         System.out.println("\nInitial Values for ALPHA is: " + Constants.ALPHA + ", BETA is : " + Constants.BETA
         + ", GAMMA is: " + Constants.GAMMA + " and DELTA is: " + Constants.DELTA);
