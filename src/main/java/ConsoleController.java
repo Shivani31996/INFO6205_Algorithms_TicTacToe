@@ -40,7 +40,7 @@ public class ConsoleController {
         trainingBuilder.append("Initial Values for ALPHA is: " + Constants.ALPHA + ", BETA is : " + Constants.BETA
                 + ", GAMMA is: " + Constants.GAMMA + " and DELTA is: " + Constants.DELTA +"\n");
 
-        while (iterations < 2000) {
+        while (iterations < numGames) {
             int level = 0;
             String initial = states.get(level).stream().findFirst().orElse(null);
 
