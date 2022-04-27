@@ -22,12 +22,10 @@ public class StateGenerator {
             symmetricStates.put(i, set);
             count += set.size();
         }
-
-        System.out.println(count);
         return symmetricStates;
     }
 
-    public static void backTrack(char[] board, char nextTurn, HashMap<Integer, HashSet<String>> states, int level) {
+    private static void backTrack(char[] board, char nextTurn, HashMap<Integer, HashSet<String>> states, int level) {
         if (!states.containsKey(level)) {
             states.put(level, new HashSet<>());
         }

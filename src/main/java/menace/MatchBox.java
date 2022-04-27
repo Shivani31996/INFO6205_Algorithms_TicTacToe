@@ -33,42 +33,13 @@ public class MatchBox {
     }
 
     public Bead getBead(String state, Integer[] mapping, Mode mode){
-//        int pos = 0;
-//
-//        if (mode == Mode.TRAIN) {
-//            pos = new Random().nextInt(beads.size());
-//        } else {
-//            pos = getMaxSize(beads);
-//        }
-
         if (this.beads.size() == 0) {
             this.fillBox();
         }
 
         int pos = new Random().nextInt(beads.size());
-
-//        if (this.state.charAt(beads.get(pos).getPosition()) != '-') {
-//            System.out.println("Bade lode");
-//        }
-        //System.out.println("Original: " + this.state + " -> pos: " + beads.get(pos).getPosition());
-        //System.out.println("Bahar wala: " + state + " -> pos: " + mapping[beads.get(pos).getPosition()]);
         this.currentBead = beads.remove(pos);
         return new Bead(mapping[currentBead.getPosition()]);
-//        if (state.charAt(mapping[beads.get(pos).getPosition()]) == '-') {
-//
-//        }
-//        while (true) {
-//            //System.out.println("lode: " + state);
-//
-//        }
-//        for (int i = 0; i < beads.size(); i++) {
-//            int pos = new Random().nextInt(beads.size());
-//            if (state.charAt(mapping[beads.get(pos).getPosition()]) == '-') {
-//                return new Bead(mapping[beads.remove(pos).getPosition()]);
-//            }
-//        }
-
-        //throw new IllegalStateException("Could not find bead");
     }
 
     private int getMaxSize(List<Bead> beads) {
@@ -88,8 +59,6 @@ public class MatchBox {
         for (int i = 0; i < Constants.GAMMA - 1; i++) {
             int index = this.beads.indexOf(currentBead);
             if (index == -1) {
-                //Changed this
-//                addBeads(this.currentBead.getPosition(), 1);
                 break;
             }
 
@@ -116,9 +85,7 @@ public class MatchBox {
 
         String output = state;
         for (int i = 0; i < freq.length; i++) {
-            if (freq[i] > Constants.ALPHA) {
-                output += ", Bead: " + i + " freq: " + freq[i];
-            }
+            output += ", Bead: " + i + " freq: " + freq[i];
         }
 
         return output;

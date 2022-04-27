@@ -10,7 +10,7 @@ public class LogManager {
     /* Get actual class name to be printed on */
     private static Logger log = Logger.getLogger(LogManager.class.getName());
 
-    public static void logResult(String result) throws IOException {
+    public static void log(String result) throws IOException {
         FileConfigurator.configure();
         log.info(result);
     }
