@@ -3,14 +3,14 @@ package menace;
 import java.util.HashSet;
 
 public class SymmetryUtil {
-    private static Integer[] selfMapping = {0, 1, 2, 3, 4, 5, 6, 7, 8};
-    private static Integer[] rotate90Mapping = {2, 5, 8, 1, 4, 7, 0, 3, 6};
-    private static Integer[] rotate180Mapping = {8, 7, 6, 5, 4, 3, 2, 1, 0};
-    private static Integer[] rotate270Mapping = {6, 3, 0, 7, 4, 1, 8, 5, 2};
-    private static Integer[] flipHorizontalMapping = {6, 7, 8, 3, 4, 5, 0, 1, 2};
-    private static Integer[] flipVerticalMapping = {2, 1, 0, 5, 4, 3, 8, 7, 6};
-    private static Integer[] diagonalFlipMapping = {0, 3, 6, 1, 4, 7, 2, 5, 8};
-    private static Integer[] antiDiagonalFlipMapping = {8, 5, 2, 7, 4, 1, 6, 3, 0};
+    private static final Integer[] selfMapping = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+    private static final Integer[] rotate90Mapping = {2, 5, 8, 1, 4, 7, 0, 3, 6};
+    private static final Integer[] rotate180Mapping = {8, 7, 6, 5, 4, 3, 2, 1, 0};
+    private static final Integer[] rotate270Mapping = {6, 3, 0, 7, 4, 1, 8, 5, 2};
+    private static final Integer[] flipHorizontalMapping = {6, 7, 8, 3, 4, 5, 0, 1, 2};
+    private static final Integer[] flipVerticalMapping = {2, 1, 0, 5, 4, 3, 8, 7, 6};
+    private static final Integer[] diagonalFlipMapping = {0, 3, 6, 1, 4, 7, 2, 5, 8};
+    private static final Integer[] antiDiagonalFlipMapping = {8, 5, 2, 7, 4, 1, 6, 3, 0};
 
     public static String[] getCombinations(String state) {
         String[] states = new String[8];

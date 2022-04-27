@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Bead {
 
-    private int position;
+    private final int position;
 
     public Bead(int position) {
         this.position = position;
