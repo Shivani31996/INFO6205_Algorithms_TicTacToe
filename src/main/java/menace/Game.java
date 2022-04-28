@@ -29,6 +29,10 @@ public class Game {
         this.gameStatus = GameStatusHelper.getStatus(board);
     }
 
+    /**
+     * @param position position in the matchbox you want to place the bead
+     * @param newState state after playing one's turn
+     */
     public void setMoveState(int position, State newState) {
         moves[position] = newState;
         if (newState.equals(State.WIN)) {

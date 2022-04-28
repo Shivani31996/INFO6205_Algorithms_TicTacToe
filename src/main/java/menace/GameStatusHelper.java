@@ -21,6 +21,11 @@ public class GameStatusHelper {
         return verticalLine(state, mark) || horizontalLine(state, mark) || diagonalLine(state, mark);
     }
 
+    /**
+     * @param state Current state is passed
+     * @param mark Markings are passed
+     * @return true is returned if vertical winning position is being created
+     */
     private static boolean verticalLine(String state, char mark) {
         for (int column = 0; column < 3; column++) {
             if (state.charAt(column) == mark && state.charAt(column + 3) == mark && state.charAt(column + 6) == mark)
@@ -32,6 +37,11 @@ public class GameStatusHelper {
         return false;
     }
 
+    /**
+     * @param state current state of the game
+     * @param mark Markings are passed
+     * @return true is returned if horizontal winning position is being created in the grid
+     */
     private static boolean horizontalLine(String state, char mark) {
         for (int row = 0; row < 3; row++) {
             if (state.charAt((row * 3)) == mark
