@@ -1,6 +1,6 @@
 package menace;
 
-public enum Status {
+public enum GameStatus {
     X_WINNER,
     O_WINNER,
     DRAW,

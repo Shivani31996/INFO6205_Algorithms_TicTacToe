@@ -1,8 +1,9 @@
 package menace;
 
 public class Constants {
-    final static int ALPHA = 1;
-    final static int BETA = 2;
-    final static int GAMMA = 0;
-    final static int DELTA  = 1;
+    final public static int ALPHA = 50;
+    final public static int BETA = 3;
+    final public static int GAMMA = 3;
+    final public static int DELTA  = 2;
 }
+

@@ -3,15 +3,6 @@ package menace;
 import java.util.HashSet;
 
 public class SymmetryUtil {
-    //    {0, 1, 2, 3, 4, 5, 6, 7, 8}, // normal board
-    //    {6, 3, 0, 7, 4, 1, 8, 5, 2}, // 90 degees right
-    //    {2, 5, 8, 1, 4, 7, 0, 3, 6}, // 90 degrees left
-    //    {8, 7, 6, 5, 4, 3, 2, 1, 0}, // 180 degree rotation.
-    //    {2, 1, 0, 5, 4, 3, 8, 7, 6}, // flipped left to right
-    //    {6, 7, 8, 3, 4, 5, 0, 1, 2}, // flipped top to bottom
-    //    {2, 1, 6, 5, 4, 3, 8, 7, 0}, // 180 degree rotation, flipped horizontally
-    //    {8, 5, 2, 7, 4, 1, 6, 3, 0}, // 90 degrees left,  flipped vertically
-    //    {0, 3, 6, 1, 4, 7, 2, 5, 8}  // 90 degrees right, flipped vertically
     private static Integer[] selfMapping = {0, 1, 2, 3, 4, 5, 6, 7, 8};
     private static Integer[] rotate90Mapping = {2, 5, 8, 1, 4, 7, 0, 3, 6};
     private static Integer[] rotate180Mapping = {8, 7, 6, 5, 4, 3, 2, 1, 0};
@@ -106,12 +97,6 @@ public class SymmetryUtil {
 
     public static String antiDiagonalFlip(String board) {
         String transformedBoard = transform(board, antiDiagonalFlipMapping);
-        return transformedBoard;
-    }
-
-    public static String foo(String board) {
-        Integer[] map = {2, 1, 6, 5, 4, 3, 8, 7, 0};
-        String transformedBoard = transform(board, map);
         return transformedBoard;
     }
 

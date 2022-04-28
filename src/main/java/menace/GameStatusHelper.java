@@ -2,11 +2,11 @@ package menace;
 
 public class GameStatusHelper {
 
-    public static Status getStatus(String state) {
-        if (isDraw(state)) return Status.DRAW;
-        if (isXWinner(state)) return Status.X_WINNER;
-        if (isOWinner(state)) return Status.O_WINNER;
-        return Status.RUNNING;
+    public static GameStatus getStatus(String state) {
+        if (isXWinner(state)) return GameStatus.X_WINNER;
+        if (isOWinner(state)) return GameStatus.O_WINNER;
+        if (isDraw(state)) return GameStatus.DRAW;
+        return GameStatus.RUNNING;
     }
 
     private static boolean isXWinner(String state) {
